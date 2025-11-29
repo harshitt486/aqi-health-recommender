@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AQI Health Recommender</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 720px; margin: auto; }
+    input, button { padding: 8px; margin: 4px 0; }
+    .card { border: 1px solid #ddd; padding: 12px; border-radius: 8px; margin-top: 12px; }
+    .aqi { font-size: 48px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>AQI Health Recommender</h1>
+  <div>
+    City: <input id="city" value="Delhi">
+    Age: <input id="age" value="24" type="number" style="width:80px">
+    Asthma: <input id="asthma" type="checkbox">
+    Smoker: <input id="smoker" type="checkbox">
+    <button id="check">Check</button>
+  </div>
+
+  <div id="result" class="card" style="display:none"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
