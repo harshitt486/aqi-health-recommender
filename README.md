@@ -1,21 +1,52 @@
-🌍 AQI Health Recommender (AI + Live AQI + ML + Flask + JS)
+🌍 AQI Health Recommender — AI-Based Live Air Quality Health Assistant
 
-A real-time Air Quality Index (AQI) health recommendation system using live AQICN API data, machine learning, and personal health factors to generate personalized health safety advice.
 
-🚀 Features
-🌐 Live AQI Retrieval
 
-Uses AQICN API (token-based)
 
-Supports all Indian cities
 
-Shows AQI, PM2.5, PM10
 
-🧠 ML-Based Risk Prediction
 
-Predicts user health risk
 
-Inputs:
+
+
+A real-time Air Quality Index (AQI) Health Recommender that uses:
+
+Live AQICN API (real-time AQI, PM2.5, PM10)
+
+Machine Learning model to predict health risk
+
+User factors (age, asthma, smoker)
+
+Flask backend API
+
+HTML/CSS/JS frontend
+
+It provides personalized health recommendations based on real-time pollution levels for any Indian city.
+
+📑 Table of Contents
+
+✨ Features
+
+📦 Project Structure
+
+⚙️ Setup (Local)
+
+🔑 Environment Variables
+
+📡 API Usage
+
+🌐 Deployment Guide
+
+🚀 Future Improvements
+
+👨‍💻 Author
+
+✨ Features
+🌐 Live AQI & Pollution Data
+
+Uses AQICN API (Token required)
+
+Returns:
 
 AQI
 
@@ -23,33 +54,43 @@ PM2.5
 
 PM10
 
+AQI Category (Good → Severe)
+
+🧠 ML-Based Health Risk Prediction
+
+Predicts: Low / Medium / High risk
+
+Based on:
+
+AQI
+
+PM2.5
+
+PM10
+
+Hour of day
+
+Day of week
+
 Temperature
 
 Humidity
 
-Hour
-
-Day of Week
-
-Age / Asthma / Smoking history
-
 🩺 Personalized Health Recommendations
 
-Age relevance
+If user has asthma, gives extra warnings
 
-Asthma sensitivity
+If smoker, increases risk
 
-Smoking sensitivity
+General public recommendations based on AQI category
 
 🖥️ Full Stack Project
 
-Flask backend
+Backend: Flask + Python
 
-HTML/CSS/JavaScript frontend
+Frontend: HTML + CSS + JavaScript
 
-Complete API + UI integration
-
-Deployment-ready
+ML Model: Scikit-learn
 
 📦 Project Structure
 aqi-health-recommender/
@@ -67,12 +108,30 @@ aqi-health-recommender/
 │   ├── app.js
 │   ├── style.css
 │
-├── README.md
+├── data/
+│   ├── (optional synthetic / CSV data)
+│
+└── README.md
 
-▶ Running Locally
-Backend
-cd backend
+⚙️ Setup (Local)
+1️⃣ Clone Repository
+git clone https://github.com/harshitt486/aqi-health-recommender
+cd aqi-health-recommender/backend
+
+2️⃣ Install Dependencies
 pip install -r requirements.txt
+
+3️⃣ Set Your AQICN Token
+
+(Required for live AQI data)
+
+Windows:
+set AQICN_TOKEN=your_token_here
+
+Mac/Linux:
+export AQICN_TOKEN=your_token_here
+
+4️⃣ Run Backend
 python app.py
 
 
@@ -80,17 +139,27 @@ Runs at:
 
 http://127.0.0.1:5000
 
-Frontend
+5️⃣ Run Frontend
 
-Open:
+Open in your browser:
 
 frontend/index.html
 
-🔗 API Example
-Request:
-/current?city=Kanpur&age=24&asthma=0&smoker=0
+🔑 Environment Variables
+Variable	Description
+AQICN_TOKEN	Your real-time AQI API token from api.waqi.info
 
-Example Response:
+Get your token from:
+👉 https://aqicn.org/data-platform/token/
+
+📡 API Usage
+Endpoint:
+GET /current?city={city}&age={age}&asthma=0|1&smoker=0|1
+
+Example:
+http://127.0.0.1:5000/current?city=Kanpur&age=24&asthma=0&smoker=0
+
+Sample Response
 {
   "city": "Kanpur",
   "aqi": 132,
@@ -103,41 +172,74 @@ Example Response:
   ]
 }
 
-🌐 Deployment
-Backend (Render)
+🌐 Deployment Guide
+🔵 Backend — Render Deployment
 
-Connect GitHub repo
+Push this repo to GitHub
 
-Add environment variable:
+Visit https://render.com
 
-AQICN_TOKEN=your_api_token
+Create new Web Service
+
+Connect repo
+
+Set environment variable:
+
+AQICN_TOKEN=your_token_here
 
 
-Render auto-deploys your Flask app
+Render auto-installs using:
 
-Frontend (Vercel / Netlify)
+pip install -r requirements.txt
 
-Deploy frontend/ folder
 
-Replace backend URL in app.js with Render URL
+Start command:
 
-🧪 Future Improvements
+gunicorn app:app
 
-24-hour AQI graph
 
-7-day ML prediction
+You will get a live URL like:
 
-Weather + AQI combined health risk
+https://aqi-backend.onrender.com
 
-Android/Ios app version
+🟣 Frontend — Vercel Deployment
 
-Notification alerts for bad AQI
+Go to https://vercel.com
 
-🧑‍💻 Author
+New Project → Select Repo
+
+Choose frontend/ folder
+
+Deploy
+
+Update app.js with backend URL:
+
+const url = "https://aqi-backend.onrender.com/current?...";
+
+🚀 Future Improvements
+
+📊 AQI Graphs (24 hours / 7 days)
+
+📱 Mobile App (React Native / Flutter)
+
+🔔 Push Notifications for high pollution
+
+🌡️ Weather + AQI combined risk score
+
+🧬 Train ML model on real CPCB data
+
+🏙️ Auto city detection via geolocation
+
+👨‍💻 Author
 
 Harshit Kumar Tiwari
 B.Tech — Computer Science (Cyber Security)
 
+📍 Noida, India
 📧 harshittiwari486@gmail.com
 
-🔗 LinkedIn: https://www.linkedin.com/in/harshit-tiwari-8206b1329
+🔗 Linkedin: https://www.linkedin.com/in/harshit-tiwari-8206b1329
+
+⭐ If you like this project
+
+Please ⭐ star the repo — it inspires additional improvements!
