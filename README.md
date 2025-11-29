@@ -1,59 +1,143 @@
-# AQI Health Recommender (Runnable Project)
+🌍 AQI Health Recommender (AI + Live AQI + ML + Flask + JS)
 
-This is a complete runnable scaffold for **AI-based Personal Health Recommendations** using air-quality data.
-It contains backend (Flask), a simple ML training script, a utility for CPCB-style AQI calculation,
-and a tiny frontend to test the service locally.
+A real-time Air Quality Index (AQI) health recommendation system using live AQICN API data, machine learning, and personal health factors to generate personalized health safety advice.
 
-> NOTE: This scaffold uses **OpenAQ** or other public APIs for live AQI values. If you want fully offline
-training/evaluation, download/put a CSV into `data/india_aqi_real.csv` (instructions below).
+🚀 Features
+🌐 Live AQI Retrieval
 
-## Project Structure
-```
+Uses AQICN API (token-based)
+
+Supports all Indian cities
+
+Shows AQI, PM2.5, PM10
+
+🧠 ML-Based Risk Prediction
+
+Predicts user health risk
+
+Inputs:
+
+AQI
+
+PM2.5
+
+PM10
+
+Temperature
+
+Humidity
+
+Hour
+
+Day of Week
+
+Age / Asthma / Smoking history
+
+🩺 Personalized Health Recommendations
+
+Age relevance
+
+Asthma sensitivity
+
+Smoking sensitivity
+
+🖥️ Full Stack Project
+
+Flask backend
+
+HTML/CSS/JavaScript frontend
+
+Complete API + UI integration
+
+Deployment-ready
+
+📦 Project Structure
 aqi-health-recommender/
-├─ data/
-│  └─ india_aqi_real.csv       # (optional) real dataset CSV if you want to train locally
-├─ backend/
-│  ├─ requirements.txt
-│  ├─ model_train.py
-│  ├─ model.pkl                # created after running model_train.py
-│  ├─ label_encoder.pkl        # created after running model_train.py
-│  ├─ aqi_utils.py
-│  └─ app.py
-├─ frontend/
-│  ├─ index.html
-│  └─ app.js
-└─ README.md
-```
+│
+├── backend/
+│   ├── app.py
+│   ├── model.pkl
+│   ├── label_encoder.pkl
+│   ├── aqi_utils.py
+│   ├── requirements.txt
+│   ├── render.yaml
+│
+├── frontend/
+│   ├── index.html
+│   ├── app.js
+│   ├── style.css
+│
+├── README.md
 
-## Quick start (local)
-1. Make a Python virtual environment:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate   # Windows: venv\Scripts\activate
-   ```
+▶ Running Locally
+Backend
+cd backend
+pip install -r requirements.txt
+python app.py
 
-2. Install backend deps:
-   ```bash
-   cd backend
-   pip install -r requirements.txt
-   ```
 
-3. (Optional) If you have a dataset, place it as `../data/india_aqi_real.csv` then run:
-   ```bash
-   python model_train.py
-   ```
-   This will create `model.pkl` and `label_encoder.pkl`. If you skip this, `app.py` will still run using a small default model included.
+Runs at:
 
-4. Run the Flask API:
-   ```bash
-   python app.py
-   ```
-   By default it runs on http://127.0.0.1:5000
+http://127.0.0.1:5000
 
-5. Open the frontend:
-   Open `frontend/index.html` in the browser (or serve it via `python -m http.server` from frontend directory) and click *Check*.
+Frontend
 
-## Notes and Next Steps
-- For live data: `app.py` queries OpenAQ (no API key). If you prefer OpenWeatherMap, set env var `OWM_API_KEY` and adjust `app.py`.
-- The CPCB AQI conversion is in `backend/aqi_utils.py`. Use it to compute AQI from PM2.5/PM10 as per breakpoints.
-- This scaffold is intentionally simple so you can iterate: add user accounts, push notifications, improved models (LSTM, Prophet), and mapping to Indian AQI categories.
+Open:
+
+frontend/index.html
+
+🔗 API Example
+Request:
+/current?city=Kanpur&age=24&asthma=0&smoker=0
+
+Example Response:
+{
+  "city": "Kanpur",
+  "aqi": 132,
+  "pm2_5": 132,
+  "pm10": 86,
+  "aqi_category": "Moderate",
+  "risk": "Medium",
+  "recommendations": [
+    "Air is Moderate. Sensitive people should be cautious."
+  ]
+}
+
+🌐 Deployment
+Backend (Render)
+
+Connect GitHub repo
+
+Add environment variable:
+
+AQICN_TOKEN=your_api_token
+
+
+Render auto-deploys your Flask app
+
+Frontend (Vercel / Netlify)
+
+Deploy frontend/ folder
+
+Replace backend URL in app.js with Render URL
+
+🧪 Future Improvements
+
+24-hour AQI graph
+
+7-day ML prediction
+
+Weather + AQI combined health risk
+
+Android/Ios app version
+
+Notification alerts for bad AQI
+
+🧑‍💻 Author
+
+Harshit Kumar Tiwari
+B.Tech — Computer Science (Cyber Security)
+
+📧 harshittiwari486@gmail.com
+
+🔗 LinkedIn: https://www.linkedin.com/in/harshit-tiwari-8206b1329
